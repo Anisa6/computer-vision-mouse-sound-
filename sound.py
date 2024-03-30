@@ -1,4 +1,3 @@
-
 import cv2
 import mediapipe as mp
 import pyautogui as pag
@@ -83,7 +82,8 @@ while True:
 
             # Check fingers up
             fingers = detector.fingersUp()
-
+            
+            
             # If pinky is down set volume
             if not fingers[4]:
                 volume.SetMasterVolumeLevelScalar(volPer / 100, None)
@@ -92,6 +92,7 @@ while True:
                 time.sleep(0.05)
             else:
                 colorVol = (255, 0, 0)
+                
 
     # Drawings
     cv2.rectangle(img, (50, 150), (85, 400), (0, 255, 0), 3)
@@ -117,10 +118,10 @@ while True:
             pag.moveTo(x_mouse, y_mouse)
 
             f4_x, f4_y, _1, _2 = landmark[4]
-            f8_x, f8_y, _1, _2 = landmark[8]
-            if abs(f4_x - f8_x) < 20 and abs(f4_y - f8_y) < 20:
+            f12_x, f12_y, _1, _2 = landmark[12]
+            if abs(f4_x - f12_x) < 20 and abs(f4_y - f12_y) < 20:
                 pag.click()
-                print(f'click  {abs(f4_x - f8_x)=},  {abs(f4_y - f8_y)=}')
+                print(f'click  {abs(f4_x - f12_x)=},  {abs(f4_y - f12_y)=}')
                 
 
 
